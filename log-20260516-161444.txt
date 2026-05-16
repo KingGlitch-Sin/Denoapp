@@ -1,0 +1,53 @@
+2026-05-16T16:12:55.597991Z  INFO dispatch nexus-websocket-a.intercom.io:443 -> MITM + Apps Script relay (TLS detected)
+2026-05-16T16:12:55.598055Z  INFO MITM TLS -> nexus-websocket-a.intercom.io:443 (socks_host=nexus-websocket-a.intercom.io, sni=nexus-websocket-a.intercom.io)
+2026-05-16T16:12:55.598700Z  INFO relay GET https://nexus-websocket-a.intercom.io/pubsub/5-fV-ENCOHDUMuaWCnK41T9oqXjJBXIdAYOpkBOXAcBevTPYbR3PVFVdYJC9ysRmx-Ta0uu3GkmVhcT65P2g_jGaVfytWjhlvKNTvA?X-Nexus-New-Client=true&X-Nexus-Version=0.18.8&user_role=user
+2026-05-16T16:12:56.207376Z  INFO dispatch api.render.com:443 -> MITM + Apps Script relay (TLS detected)
+2026-05-16T16:12:56.207405Z  INFO MITM TLS -> api.render.com:443 (socks_host=api.render.com, sni=api.render.com)
+2026-05-16T16:12:56.208867Z  INFO relay POST https://api.render.com/graphql
+2026-05-16T16:12:57.402769Z  INFO dispatch extension.femetrics.grammarly.io:443 -> MITM + Apps Script relay (TLS detected)
+2026-05-16T16:12:57.402811Z  INFO MITM TLS -> extension.femetrics.grammarly.io:443 (socks_host=extension.femetrics.grammarly.io, sni=extension.femetrics.grammarly.io)
+2026-05-16T16:12:57.404918Z  INFO relay POST https://extension.femetrics.grammarly.io/batch/import
+2026-05-16T16:12:58.589866Z  INFO relay POST https://api.render.com/graphql
+2026-05-16T16:12:59.139256Z  INFO HTTP GET http://httpbin.org/html
+2026-05-16T16:13:01.212434Z  INFO relay POST https://api.render.com/graphql
+2026-05-16T16:13:02.744524Z  INFO HTTP GET http://httpbin.org/html
+2026-05-16T16:13:04.367463Z  INFO dispatch nexus-websocket-a.intercom.io:443 -> MITM + Apps Script relay (TLS detected)
+2026-05-16T16:13:04.367498Z  INFO MITM TLS -> nexus-websocket-a.intercom.io:443 (socks_host=nexus-websocket-a.intercom.io, sni=nexus-websocket-a.intercom.io)
+2026-05-16T16:13:04.368788Z  INFO relay GET https://nexus-websocket-a.intercom.io/pubsub/5-fV-ENCOHDUMuaWCnK41T9oqXjJBXIdAYOpkBOXAcBevTPYbR3PVFVdYJC9ysRmx-Ta0uu3GkmVhcT65P2g_jGaVfytWjhlvKNTvA?X-Nexus-New-Client=true&X-Nexus-Version=0.18.8&user_role=user
+2026-05-16T16:13:04.794995Z  INFO relay POST https://api.render.com/graphql
+2026-05-16T16:13:12.321688Z  INFO dispatch nexus-websocket-a.intercom.io:443 -> MITM + Apps Script relay (TLS detected)
+2026-05-16T16:13:12.321716Z  INFO MITM TLS -> nexus-websocket-a.intercom.io:443 (socks_host=nexus-websocket-a.intercom.io, sni=nexus-websocket-a.intercom.io)
+2026-05-16T16:13:12.322284Z  INFO relay GET https://nexus-websocket-a.intercom.io/pubsub/5-fV-ENCOHDUMuaWCnK41T9oqXjJBXIdAYOpkBOXAcBevTPYbR3PVFVdYJC9ysRmx-Ta0uu3GkmVhcT65P2g_jGaVfytWjhlvKNTvA?X-Nexus-New-Client=true&X-Nexus-Version=0.18.8&user_role=user
+2026-05-16T16:13:16.721823Z  INFO relay POST https://sync.opera.com/api/sync/command/?client=Opera&client_id=Zw0ytNrr5I1w67Sa5S%2BV2w%3D%3D
+2026-05-16T16:13:19.440587Z  INFO h2 fast path active; h1 fallback pool pre-warmed with 3 connection(s)
+2026-05-16T16:13:31.210629Z  INFO relay POST https://api.render.com/graphql
+2026-05-16T16:13:31.438628Z  INFO dispatch nexus-websocket-a.intercom.io:443 -> MITM + Apps Script relay (TLS detected)
+2026-05-16T16:13:31.438668Z  INFO MITM TLS -> nexus-websocket-a.intercom.io:443 (socks_host=nexus-websocket-a.intercom.io, sni=nexus-websocket-a.intercom.io)
+2026-05-16T16:13:31.439327Z  INFO relay GET https://nexus-websocket-a.intercom.io/pubsub/5-fV-ENCOHDUMuaWCnK41T9oqXjJBXIdAYOpkBOXAcBevTPYbR3PVFVdYJC9ysRmx-Ta0uu3GkmVhcT65P2g_jGaVfytWjhlvKNTvA?X-Nexus-New-Client=true&X-Nexus-Version=0.18.8&user_role=user
+2026-05-16T16:13:33.328559Z  INFO relay POST https://api.render.com/graphql
+2026-05-16T16:13:37.207633Z  INFO relay POST https://api.render.com/graphql
+2026-05-16T16:13:39.356640Z  INFO relay POST https://api.render.com/graphql
+2026-05-16T16:13:41.285459Z  INFO dispatch api.render.com:443 -> MITM + Apps Script relay (TLS detected)
+2026-05-16T16:13:41.285497Z  INFO MITM TLS -> api.render.com:443 (socks_host=api.render.com, sni=api.render.com)
+2026-05-16T16:13:41.286119Z  INFO relay GET https://api.render.com/graphql
+2026-05-16T16:13:57.431560Z  INFO dispatch nexus-websocket-a.intercom.io:443 -> MITM + Apps Script relay (TLS detected)
+2026-05-16T16:13:57.431590Z  INFO MITM TLS -> nexus-websocket-a.intercom.io:443 (socks_host=nexus-websocket-a.intercom.io, sni=nexus-websocket-a.intercom.io)
+2026-05-16T16:13:57.432188Z  INFO relay GET https://nexus-websocket-a.intercom.io/pubsub/5-fV-ENCOHDUMuaWCnK41T9oqXjJBXIdAYOpkBOXAcBevTPYbR3PVFVdYJC9ysRmx-Ta0uu3GkmVhcT65P2g_jGaVfytWjhlvKNTvA?X-Nexus-New-Client=true&X-Nexus-Version=0.18.8&user_role=user
+2026-05-16T16:14:03.397767Z  INFO dispatch nexus-websocket-a.intercom.io:443 -> MITM + Apps Script relay (TLS detected)
+2026-05-16T16:14:03.397798Z  INFO MITM TLS -> nexus-websocket-a.intercom.io:443 (socks_host=nexus-websocket-a.intercom.io, sni=nexus-websocket-a.intercom.io)
+2026-05-16T16:14:03.398386Z  INFO relay GET https://nexus-websocket-a.intercom.io/pubsub/5-fV-ENCOHDUMuaWCnK41T9oqXjJBXIdAYOpkBOXAcBevTPYbR3PVFVdYJC9ysRmx-Ta0uu3GkmVhcT65P2g_jGaVfytWjhlvKNTvA?X-Nexus-New-Client=true&X-Nexus-Version=0.18.8&user_role=user
+2026-05-16T16:14:05.206697Z  INFO relay POST https://api.render.com/graphql
+2026-05-16T16:14:07.406638Z  INFO relay POST https://api.render.com/graphql
+2026-05-16T16:14:12.209814Z  INFO relay POST https://api.render.com/graphql
+2026-05-16T16:14:12.858285Z  INFO dispatch nexus-websocket-a.intercom.io:443 -> MITM + Apps Script relay (TLS detected)
+2026-05-16T16:14:12.858320Z  INFO MITM TLS -> nexus-websocket-a.intercom.io:443 (socks_host=nexus-websocket-a.intercom.io, sni=nexus-websocket-a.intercom.io)
+2026-05-16T16:14:12.858976Z  INFO relay GET https://nexus-websocket-a.intercom.io/pubsub/5-fV-ENCOHDUMuaWCnK41T9oqXjJBXIdAYOpkBOXAcBevTPYbR3PVFVdYJC9ysRmx-Ta0uu3GkmVhcT65P2g_jGaVfytWjhlvKNTvA?X-Nexus-New-Client=true&X-Nexus-Version=0.18.8&user_role=user
+2026-05-16T16:14:14.494720Z  INFO relay POST https://api.render.com/graphql
+2026-05-16T16:14:24.316922Z  INFO dispatch nexus-websocket-a.intercom.io:443 -> MITM + Apps Script relay (TLS detected)
+2026-05-16T16:14:24.316973Z  INFO MITM TLS -> nexus-websocket-a.intercom.io:443 (socks_host=nexus-websocket-a.intercom.io, sni=nexus-websocket-a.intercom.io)
+2026-05-16T16:14:24.317616Z  INFO relay GET https://nexus-websocket-a.intercom.io/pubsub/5-fV-ENCOHDUMuaWCnK41T9oqXjJBXIdAYOpkBOXAcBevTPYbR3PVFVdYJC9ysRmx-Ta0uu3GkmVhcT65P2g_jGaVfytWjhlvKNTvA?X-Nexus-New-Client=true&X-Nexus-Version=0.18.8&user_role=user
+2026-05-16T16:14:40.209557Z  INFO relay POST https://api.render.com/graphql
+2026-05-16T16:14:42.833553Z  INFO relay POST https://api.render.com/graphql
+2026-05-16T16:14:44.071614Z  INFO dispatch nexus-websocket-a.intercom.io:443 -> MITM + Apps Script relay (TLS detected)
+2026-05-16T16:14:44.071651Z  INFO MITM TLS -> nexus-websocket-a.intercom.io:443 (socks_host=nexus-websocket-a.intercom.io, sni=nexus-websocket-a.intercom.io)
+2026-05-16T16:14:44.072297Z  INFO relay GET https://nexus-websocket-a.intercom.io/pubsub/5-fV-ENCOHDUMuaWCnK41T9oqXjJBXIdAYOpkBOXAcBevTPYbR3PVFVdYJC9ysRmx-Ta0uu3GkmVhcT65P2g_jGaVfytWjhlvKNTvA?X-Nexus-New-Client=true&X-Nexus-Version=0.18.8&user_role=user
