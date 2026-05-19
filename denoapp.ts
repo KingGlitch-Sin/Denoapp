@@ -1,4 +1,4 @@
-// mhrv-rs exit node — deploy as an HTTP endpoint on any serverless
+// rahgozar exit node — deploy as an HTTP endpoint on any serverless
 // TypeScript host with a public IP that isn't a Google datacenter
 // (Deno Deploy, fly.io, your own VPS, etc.). Uses only web-standard
 // `Request` / `Response` / `fetch` so it's portable across runtimes.
@@ -18,7 +18,7 @@
 //   3. Set PSK below to a strong secret (`openssl rand -hex 32` from
 //      a terminal — DO NOT leave the placeholder in production).
 //   4. Deploy and copy the public URL of the deployed handler.
-//   5. In mhrv-rs config.json, add:
+//   5. In rahgozar config.json, add:
 //        "exit_node": {
 //          "enabled": true,
 //          "relay_url": "https://your-deployed-exit-node.example.com",
@@ -32,12 +32,33 @@
 // to source control, do not share publicly, rotate if leaked. The exit
 // node refuses all requests that don't carry the matching PSK.
 //
-// Failure mode: if the exit node is unreachable, mhrv-rs falls back to
+// Failure mode: if the exit node is unreachable, rahgozar falls back to
 // the regular Apps Script relay automatically — the only consequence
 // of an offline exit node is that ChatGPT/Claude/Grok stop working;
 // other sites are unaffected.
 
 const PSK = "KingSin8998";
+
+// Active-probing defense. When false (production default), bad-PSK and
+// probe-shaped requests (wrong method, malformed JSON) get a decoy 200
+// HTML page instead of a fingerprint-able JSON error. Mirrors the same
+// defense in assets/apps_script/Code.gs — an exit node that answers
+// `401 {"e":"unauthorized"}` to a probe is trivially distinguishable
+// from a static page; a 200 with a benign body is not.
+//
+// Set to `true` during initial setup if you want explicit JSON errors
+// while debugging the client — then flip back to false before the URL
+// is shared.
+const DIAGNOSTIC_MODE = false;
+
+// HTML body for the probe decoy. Generic placeholder page; no
+// proxy-shaped JSON, nothing distinctive enough for a scanner to
+// fingerprint as a tunnel endpoint. Kept identical to Code.gs so both
+// relay surfaces emit the same shape.
+const DECOY_HTML =
+  '<!DOCTYPE html><html><head><title>Web App</title></head>' +
+  '<body><p>The script completed but did not return anything.</p>' +
+  '</body></html>';
 
 // Headers the client may send that must NOT be forwarded to the
 // destination — they're hop-by-hop or would break re-encoding.
@@ -57,7 +78,7 @@ const STRIP_HEADERS = new Set([
   "via",
 ]);
 
-function decodeBase64ToBytes(input: string): Uint8Array {
+function decodeBase64ToBytes(input: string): Uint8Array<ArrayBuffer> {
   const bin = atob(input);
   const out = new Uint8Array(bin.length);
   for (let i = 0; i < bin.length; i++) out[i] = bin.charCodeAt(i);
@@ -68,6 +89,17 @@ function encodeBytesToBase64(bytes: Uint8Array): string {
   let bin = "";
   for (let i = 0; i < bytes.length; i++) bin += String.fromCharCode(bytes[i]);
   return btoa(bin);
+}
+
+function decoyOrError(
+  jsonBody: Record<string, unknown>,
+  status: number,
+): Response {
+  if (DIAGNOSTIC_MODE) return Response.json(jsonBody, { status });
+  return new Response(DECOY_HTML, {
+    status: 200,
+    headers: { "content-type": "text/html; charset=utf-8" },
+  });
 }
 
 function sanitizeHeaders(h: unknown): Record<string, string> {
@@ -95,16 +127,28 @@ export async function handleExitNodeRequest(req: Request): Promise<Response> {
     );
   }
 
+  // GET / HEAD probes are the cheapest active-scan shape — decoy them
+  // before doing anything else so the response is indistinguishable from
+  // a static placeholder page.
+  if (req.method !== "POST") {
+    return decoyOrError({ e: "method_not_allowed" }, 405);
+  }
+
+  // Parse failures of the request body are also probe-shaped — a real
+  // rahgozar client never sends invalid JSON. Decoy for the same reason
+  // as bad PSK, kept separate from the post-auth try/catch below so a
+  // genuine upstream-fetch failure still surfaces as JSON.
+  let body: unknown;
   try {
-    if (req.method !== "POST") {
-      return Response.json({ e: "method_not_allowed" }, { status: 405 });
-    }
+    body = await req.json();
+  } catch {
+    return decoyOrError({ e: "bad_json" }, 400);
+  }
+  if (!body || typeof body !== "object") {
+    return decoyOrError({ e: "bad_json" }, 400);
+  }
 
-    const body = await req.json();
-    if (!body || typeof body !== "object") {
-      return Response.json({ e: "bad_json" }, { status: 400 });
-    }
-
+  try {
     const k = String((body as any).k ?? "");
     const u = String((body as any).u ?? "");
     const m = String((body as any).m ?? "GET").toUpperCase();
@@ -112,7 +156,7 @@ export async function handleExitNodeRequest(req: Request): Promise<Response> {
     const b64 = (body as any).b;
 
     if (k !== PSK) {
-      return Response.json({ e: "unauthorized" }, { status: 401 });
+      return decoyOrError({ e: "unauthorized" }, 401);
     }
     if (!/^https?:\/\//i.test(u)) {
       return Response.json({ e: "bad url" }, { status: 400 });
@@ -134,7 +178,7 @@ export async function handleExitNodeRequest(req: Request): Promise<Response> {
       // Malformed URL — let the fetch below 400.
     }
 
-    let payload: Uint8Array | undefined;
+    let payload: Uint8Array<ArrayBuffer> | undefined;
     if (typeof b64 === "string" && b64.length > 0) {
       payload = decodeBase64ToBytes(b64);
     }
